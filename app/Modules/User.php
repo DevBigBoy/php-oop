@@ -1,27 +1,43 @@
 <?php
 
 /**
- * OOP - Object Oriented Programing
+ * OOP - Object Oriented Programming
  */
 class User
 {
-    private $first_name;
-    private $last_name;
-    private $birth_date;
-    private $address;
-    private $phone;
-    private $email;
-    private $gender;
-    private $salary;
+    protected $first_name;
+    protected $last_name;
+    protected $birth_date;
+    protected $address;
+    protected $phone;
+    protected $email;
+    protected $password;
+    protected $gender;
 
-
-    public function __construct($name)
-    {
-        $this->first_name = $name;
+    // Constructor to initialize properties
+    public function __construct(
+        $first_name,
+        $last_name,
+        $birth_date,
+        $address,
+        $phone,
+        $email,
+        $password,
+        $gender
+    ) {
+        $this->setFirst_name($first_name);
+        $this->last_name = $last_name;
+        $this->birth_date = $birth_date;
+        $this->address = $address;
+        $this->phone = $phone;
+        $this->email = $email;
+        $this->setPassword($password);
+        $this->gender = $gender;
     }
+
     public function sayHello(): string
     {
-        return 'hello world ' . $this->first_name;
+        return 'Hello, ' . $this->first_name . '!';
     }
 
     /**
@@ -39,23 +55,57 @@ class User
      */
     public function setFirst_name($first_name)
     {
-        // check if the property null, greater than 255, min 5
+        // Validate first name
+        if (empty($first_name)) {
+            throw new InvalidArgumentException('First name cannot be empty.');
+        }
+        if (strlen($first_name) < 5) {
+            throw new InvalidArgumentException('First name must be at least 5 characters long.');
+        }
+        if (strlen($first_name) > 255) {
+            throw new InvalidArgumentException('First name cannot exceed 255 characters.');
+        }
 
         $this->first_name = $first_name;
 
         return $this;
     }
+
+    /**
+     * Set the password (consider hashing)
+     */
+    public function setPassword($password)
+    {
+        // Implement password validation here if necessary
+        if (strlen($password) < 8) {
+            throw new InvalidArgumentException('Password must be at least 8 characters long.');
+        }
+
+        $this->password = password_hash($password, PASSWORD_DEFAULT); // Hash the password
+    }
 }
 
-$user = new User('sara');
+// Example usage
+// try {
+//     $user = new User(
+//         'Sara',
+//         'Smith',
+//         '1990-01-01',
+//         '123 Main St, City',
+//         '1234567890',
+//         'sara@example.com',
+//         'mypassword',
+//         'female'
+//     );
 
-// $user->password = '123456789'; Deprecated: Creation of dynamic property
-
-// echo $user->sayHello();
-
-var_dump($user);
+//     echo $user->sayHello();
+// } catch (InvalidArgumentException $e) {
+//     echo 'Error: ' . $e->getMessage();
+// }
 
 /**
  * Encapsulation
  * - Encapsulation is the practice of bundling data (variables) and methods (functions) that operate on the data within an object.
+ * Encapsulation is the practice of bundling data (variables) and methods (functions) that operate on the data within an object.
+ * You restrict access to certain components of the object, typically by making properties or methods private or protected, and only allowing controlled access through public methods (getters and setters).
  */

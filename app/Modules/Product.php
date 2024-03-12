@@ -4,12 +4,18 @@ namespace App\Modules;
 
 class Product
 {
-    private $id;
-    private $name;
-    private $price;
-    private $discount;
+    /**
+     * Summary of id
+     * 
+     */
+    protected $id;
+    protected $name;
+    protected $price;
+    protected $discount;
+    protected $image_path;
+    protected $category_id;
 
-    private $image;
+
 
     /**
      * a constructor is a special function that is automatically called when an object of a class is created. Its main purpose is to initialize the object, often by assigning values to the object’s properties when it's instantiated. Constructors provide a convenient way to set up an object with the necessary data at the moment of its creation.

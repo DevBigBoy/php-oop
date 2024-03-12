@@ -26,6 +26,13 @@ This workshop is designed to take you from a basic understanding of PHP to build
 - Managing visibility and access control (public, private, protected)
 - Understanding and applying design patterns
 
+## Key Benefits of OOP in PHP:
+
+- Reusability: Code can be reused across different parts of the project through inheritance.
+- Modularity: It makes code modular, allowing for easier debugging, testing, and maintenance.
+- Scalability: Applications can be scaled easily by extending classes or creating new ones.
+- PHP, starting from version 5, provides robust support for OOP, and many modern PHP frameworks like Laravel or Magento rely heavily on OOP principles.
+
 ## Workshop Goals
 
 By the end of this workshop, you will:
